@@ -1,0 +1,121 @@
+<html ng-app="Angello">
+<head>
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="scripts/app.js"></script>
+
+<div ng-controller="MainCtrl">
+    <h2>STATUS:{{status}}</h2>
+
+    <form ng-submit="login(user)">
+        <p>User: <input ng-model="user.name"/></p>
+        <p>Password: <input type="password" ng-model="user.password"/></p>
+        <input type="submit" value="Login"/>
+    </form>
+
+    <div class="span4 sidebar-content">
+        <h2>Stories</h2>
+
+        <div class="story" ng-repeat="story in stories" ng-click="setCurrentStory(story)">
+            <h4>{{story.title}}</h4>
+
+            <p>{{story.description}}</p>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="span6 body-content">
+        <h2>Story</h2>
+
+        <form class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="inputTitle">Title</label>
+
+                <div class="controls">
+                    <input type="text" id="inputTitle" placeholder="Title" ng-model="currentStory.title">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputStatus">Status</label>
+
+                <div class="controls">
+                    <select id="inputStatus" ng-model="currentStatus" ng-options="s.name for s in statuses"
+                            ng-change="setCurrentStatus(currentStatus)"></select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputType">Type</label>
+
+                <div class="controls">
+                    <select id="inputType" ng-model="currentType" ng-options="t.name for t in types"
+                            ng-change="setCurrentType(currentType)"></select>
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" for="inputDescription">Description</label>
+
+                <div class="controls">
+                    <textarea id="inputDescription" placeholder="Description" rows="3"
+                              ng-model="currentStory.description"></textarea>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputAcceptance">Acceptance Criteria</label>
+
+                <div class="controls">
+                    <textarea id="inputAcceptance" placeholder="Acceptance Criteria" rows="3"
+                              ng-model="currentStory.criteria"></textarea>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputReporter">Reporter</label>
+
+                <div class="controls">
+                    <textarea id="inputReporter" placeholder="Reporter" rows="3"
+                              ng-model="currentStory.reporter"></textarea>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputAssignee">Assignee</label>
+
+                <div class="controls">
+                    <textarea id="inputAssignee" placeholder="Assignee" rows="3"
+                              ng-model="currentStory.assignee"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <form class="">
+        <div class="control-group">
+            <label class="control-label" for="inputTitle">Title</label>
+
+            <div class="controls">
+                <input type="text" id="newTitle" placeholder="New Title" ng-model="newStory.title">
+                <input type="text" id="newDescription" placeholder="New Description" ng-model="newStory.description">
+
+                <a class="btn" ng-click="createStory()">
+                    <i class=>+</i>
+                </a>
+            </div>
+        </div>
+
+
+
+    </form>
+</div>
+
+
+</html>
